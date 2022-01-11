@@ -92,7 +92,7 @@ class OpenIdLogin(Endpoint):
 
     @dataclass
     class Response:
-        url: Optional[str] = field(default=None)
+        next_url: Optional[str] = field(default=None)
 
     def handle_request(
             self,
@@ -105,13 +105,13 @@ class OpenIdLogin(Endpoint):
             return_url=request.return_url,
         )
 
-        url = oidc_backend.create_authorization_url(
+        next_url = oidc_backend.create_authorization_url(
             state=state_encoder.encode(state),
             callback_uri=OIDC_LOGIN_CALLBACK_URL,
             validate_ssn=False,
         )
 
-        return self.Response(url=url)
+        return self.Response(next_url=next_url)
 
 
 # -- Login Callback Endpoints ------------------------------------------------

@@ -64,7 +64,7 @@ class TestOidcLogin:
         # -- Assert ----------------------------------------------------------
 
         actual_state = get_auth_state_from_redirect_url(
-            auth_url=r.json['url'],
+            auth_url=r.json['next_url'],
             state_encoder=state_encoder,
         )
 
