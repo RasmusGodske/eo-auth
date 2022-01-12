@@ -47,6 +47,7 @@ class AuthState(Serializable):
     OIDC Identity Provider when the client is redirected back.
     It provides a way to keep this service stateless.
     """
+    fe_url: str
     return_url: str
     created: datetime = field(
         default_factory=lambda: datetime.now(tz=timezone.utc))
@@ -88,6 +89,7 @@ class OpenIdLogin(Endpoint):
 
     @dataclass
     class Request:
+        fe_url: str
         return_url: str
 
     @dataclass
@@ -102,6 +104,7 @@ class OpenIdLogin(Endpoint):
         Handle HTTP request.
         """
         state = AuthState(
+            fe_url=request.fe_url,
             return_url=request.return_url,
         )
 
