@@ -52,7 +52,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pip3 install --upgrade --user pipenv && pipenv update -dev",
+	"postCreateCommand": "pipenv update -dev",
 
 	// Use 'postStartCommand' to run commands every time the container is started.
 	//"postStartCommand": "",
