@@ -57,6 +57,7 @@ class TestOidcLogin:
         r = client.get(
             path='/oidc/login',
             query_string={
+                'fe_url': 'http://foobar.com/',
                 'return_url': 'http://foobar.com/',
             },
         )
