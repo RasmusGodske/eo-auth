@@ -16,9 +16,9 @@ runs:
     - name: Install Helm
       uses: azure/setup-helm@v1
 
-    # - name: Add dependency chart repos
-    #   run: |
-    #     helm repo add helmcharts https://distributed-technologies.github.io/helm-charts/
+    - name: Add dependency chart repos
+      run: |
+        helm repo add helmcharts https://distributed-technologies.github.io/helm-charts/
         
     - name: Configure Git
       shell: bash
