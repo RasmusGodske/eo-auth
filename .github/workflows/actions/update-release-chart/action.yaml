@@ -17,6 +17,7 @@ runs:
       uses: azure/setup-helm@v1
 
     - name: Add dependency chart repos
+      shell: bash
       run: |
         helm repo add helmcharts https://distributed-technologies.github.io/helm-charts/
         
