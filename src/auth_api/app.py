@@ -7,7 +7,7 @@ from .config import (
     OIDC_SSN_VALIDATE_CALLBACK_PATH,
     OIDC_SSN_VALIDATE_CALLBACK_URL,
 )
- 
+  
 from .endpoints import (
     # OpenID Connect:
     OpenIdLogin,
