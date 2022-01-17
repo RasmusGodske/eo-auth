@@ -40,4 +40,4 @@ runs:
         charts_dir: chart
       env:
         CR_TOKEN: "${{ inputs.CR_TOKEN }}"
-  
+   
