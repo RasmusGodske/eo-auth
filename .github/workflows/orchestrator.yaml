@@ -8,29 +8,25 @@ env:
   PYTHON_VERSION: 3.8
   
 jobs:
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # lint:
+  #   name: Lint
+  #   runs-on: ubuntu-latest
+  #   continue-on-error: true
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Run linting
-        uses: ./.github/workflows/actions/update-release-chart
+  #     - name: Run linting
+  #       uses: ./.github/workflows/actions/lint
+
   
   publish_helm_chart:
-    name: Lint
+    name: Publish Helm Chart
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Run linting
-        uses: ./.github/workflows/actions/lint
-        with:
-          PYTHON_VERSION: ${{ env.PYTHON_VERSION }}
+      - name: Run Publish
+        uses: ./.github/workflows/actions/update-release-chart
 
   # unit_test:
   #   name: Unit test
