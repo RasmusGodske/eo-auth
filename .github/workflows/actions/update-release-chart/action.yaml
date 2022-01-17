@@ -1,8 +1,8 @@
 name: Update release chart
 
 inputs:
-  CR_TOKEN: 
-    description: 'github token'
+  CR_TOKEN:
+    description: "github token"
     required: true
 
 runs:
@@ -20,22 +20,22 @@ runs:
       shell: bash
       run: |
         helm repo add helmcharts https://distributed-technologies.github.io/helm-charts/
-        
+
     - name: Configure Git
       shell: bash
       run: |
         git config user.name "Bot"
-        git config user.email "mybot@mail.com"  
-        
+        git config user.email "mybot@mail.com"
+
     ## This is required to consider the old Circle-CI Index and to stay compatible with all the old releases.
-    - name: Fetch current Chart Index 
+    - name: Fetch current Chart Index
       shell: bash
       run: |
         git checkout origin/gh-pages index.yaml
 
     - name: Run chart-releaser
       uses: helm/chart-releaser-action@v1.2.0
-      with: 
+      with:
         config: "./.github/configs/cr.yaml"
         charts_dir: chart/
       env:
