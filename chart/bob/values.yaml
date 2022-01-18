@@ -39,7 +39,7 @@ eo-base-helm-chart:
       probes: true
       env: {}
       image:
-        repository: projectorigin/auth
+        repository: godske/eo-auth
         tag: "v0.0.421"
         pullPolicy: Always
 
