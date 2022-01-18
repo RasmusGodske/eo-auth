@@ -1,0 +1,20 @@
+apiVersion: v1
+entries:
+  eo-auth:
+  - apiVersion: v2
+    created: "2022-01-18T12:41:29.951226755Z"
+    dependencies:
+    - name: eo-base-helm-chart
+      repository: https://energinet-datahub.github.io/helm-charts/
+      version: v0.5.0
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.8
+    description: A Helm chart for Kubernetes
+    digest: c488d2f90247e8225e90a78ef3919097c6211d3fe58c4a60b3ccda4c318b35e1
+    name: eo-auth
+    type: application
+    urls:
+    - https://github.com/RasmusGodske/eo-auth/releases/download/eo-auth-v0.1.8/eo-auth-v0.1.8.tgz
+    version: v0.1.8
+generated: "2022-01-18T12:41:29.951236656Z"
