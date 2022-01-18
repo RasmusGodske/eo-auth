@@ -27,17 +27,48 @@ jobs:
   #     - name: Create release
   #       uses: ./.github/workflows/actions/create-release
   
-  publish_helm_chart:
-    name: Publish Helm Chart
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # publish_helm_chart:
+  #   name: Publish Helm Chart
+  #   runs-on: ubuntu-latest
+  #   continue-on-error: true
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Run Publish
-        uses: ./.github/workflows/actions/update-release-chart
+  #     - name: Run Publish
+  #       uses: ./.github/workflows/actions/update-release-chart
+  #       with:
+  #         CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
+          fetch-depth: 0
+
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+
+      - name: Add dependency chart repos
+        run: |
+          helm repo add helmcharts https://distributed-technologies.github.io/helm-charts/
+      - name: Configure Git
+        run: |
+          git config user.name "Bot"
+          git config user.email "bot@mail.com"  
+          
+      ## This is required to consider the old Circle-CI Index and to stay compatible with all the old releases.
+      - name: Fetch current Chart Index 
+        run: |
+          git checkout origin/gh-pages index.yaml
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.2.0
+        with: 
+          config: "./.github/configs/cr.yaml"
+          charts_dir: charts/*
+        env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
  
   # unit_test:
