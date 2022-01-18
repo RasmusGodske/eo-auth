@@ -60,9 +60,9 @@ jobs:
           git config user.email "bot@mail.com"  
           
       ## This is required to consider the old Circle-CI Index and to stay compatible with all the old releases.
-      - name: Fetch current Chart Index 
-        run: |
-          git checkout origin/gh-pages index.yaml
+      # - name: Fetch current Chart Index 
+      #   run: |
+      #     git checkout origin/gh-pages index.yaml
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.2.0
         with: 
