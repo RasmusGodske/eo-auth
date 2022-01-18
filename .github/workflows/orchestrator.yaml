@@ -19,6 +19,13 @@ jobs:
   #     - name: Run linting
   #       uses: ./.github/workflows/actions/lint
 
+  # create_release:
+  #   name: Create release
+  #   runs-on: ubuntu-latest
+  #   needs: update_release_chart
+  #   steps:
+  #     - name: Create release
+  #       uses: ./.github/workflows/actions/create-release
   
   publish_helm_chart:
     name: Publish Helm Chart
