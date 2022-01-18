@@ -40,7 +40,7 @@ eo-base-helm-chart:
       env: {}
       image:
         repository: godske/eo-auth
-        tag: "v0.0.421"
+        tag: "v0.0.420"
         pullPolicy: Always
 
   service:
