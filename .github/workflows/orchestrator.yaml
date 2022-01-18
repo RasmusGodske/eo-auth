@@ -21,17 +21,30 @@ jobs:
     outputs:
       tag: ""
     steps:
+      # Is pull-request
       - name: Find tag from helm chart
         if: ${{ github.event_name == 'pull_request' }}
         run: |
           echo "Is push"
           echo HELM_VERSION=$(grep "version: " chart/Chart.yaml | cut -f2 -d' ') >> $GITHUB_ENV
       
+      # Is push to main
       - name: Find tag from helm chart
-        if: ${{ github.event_name != 'pull_request' }}
+        if: |
+          ${{ github.event_name == 'push' }} &&
+          ${{ github.event.ref == 'refs/heads/main' }}
+
         run: |
-          echo "Is push"
-          echo HELM_VERSION=$(grep "version: " chart/Chart.yaml | cut -f2 -d' ') >> $GITHUB_ENV
+          echo "Is push to main"
+      
+      # Is push to branch other than main
+      - name: Find tag from helm chart
+        if: |
+          ${{ github.event_name == 'push' }} &&
+          ${{ github.event.ref != 'refs/heads/main' }}
+
+        run: |
+          echo "Is push another branch that isn't main"
         
 
   # lint:
