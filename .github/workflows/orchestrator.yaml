@@ -31,8 +31,7 @@ jobs:
       # Is push to main
       - name: Find tag from helm chart
         if: |
-          ${{ github.event_name == 'push' }} &&
-          ${{ github.event.ref == 'refs/heads/main' }}
+          ${{ github.event_name == 'push' }} && ${{ github.event.ref == 'refs/heads/main' }}
 
         run: |
           echo "Is push to main"
@@ -40,8 +39,7 @@ jobs:
       # Is push to branch other than main
       - name: Find tag from helm chart
         if: |
-          ${{ github.event_name == 'push' }} &&
-          ${{ github.event.ref != 'refs/heads/main' }}
+          ${{ github.event_name == 'push' }} && ${{ github.event.ref != 'refs/heads/main' }}
 
         run: |
           echo "Is push another branch that isn't main"
