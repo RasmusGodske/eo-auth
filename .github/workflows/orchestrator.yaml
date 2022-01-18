@@ -27,11 +27,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Run Publish
         uses: ./.github/workflows/actions/update-release-chart
         with:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-
+ 
   # unit_test:
   #   name: Unit test
   #   runs-on: ubuntu-latest
